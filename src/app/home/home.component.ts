@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 
 @Component({
@@ -10,16 +9,14 @@ import { ApiService } from '../service/api.service';
 export class HomeComponent implements OnInit {
   users: any[] = [];
   user: any = {};
-  toggle = true;
+  bgColor: string = '';
 
-  constructor(private router: Router, private api: ApiService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-  }
+  constructor(private api: ApiService) {}
   ngOnInit(): void {
     this.getUsers();
   }
 
-  // to get a random user
+  // to get a random user from all users
   getUsers() {
     this.api.getAllUsers().subscribe((data: any) => {
       this.users = data.users;
@@ -29,13 +26,8 @@ export class HomeComponent implements OnInit {
 
   // get one random user
   getRandomUser() {
-    var index = Math.floor(Math.random() * 29) + 1;
+    var index = Math.floor(Math.random() * this.users.length - 1) + 1;
     this.user = this.users[index];
-  }
-
-  // to refresh the page
-  refresh() {
-    this.getRandomUser();
-    this.toggle = !this.toggle;
+    this.bgColor = Math.floor(Math.random() * 16777215).toString(16);
   }
 }

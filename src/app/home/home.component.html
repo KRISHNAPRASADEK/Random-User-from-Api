@@ -1,20 +1,19 @@
 <div class="home">
-  <h1 class="text-center mt-3">
-    Random User on Refresh - Fetching Data from API
-  </h1>
-
   <div class="container mt-5">
     <div class="row d-flex justify-content-center">
-      <div class="col-md-7">
-        <div
-          class="card p-2 text-center"
-          [ngClass]="{ 'bg-light': toggle, 'bg-warning': !toggle }"
-        >
+      <div
+        class="col-md-7 pb-5 bg"
+        [ngStyle]="{ 'background-color': '#' + bgColor }"
+      >
+        <h1 class="text-center text-white mt-3 mb-3">
+          <b>Random User on Refresh</b>
+        </h1>
+        <div class="card p-2 text-center">
           <div class="row">
             <div class="col-md-7 border-right no-gutters">
               <div class="py-3">
                 <img [src]="user.image" width="100" class="rounded-circle" />
-                <h4 class="text-success">
+                <h4>
                   <b>{{ user.firstName + " " + user.lastName }}</b>
                 </h4>
                 <div class="allergy">
@@ -62,9 +61,9 @@
                 </div>
                 <div class="px-3">
                   <button
-                    (click)="refresh()"
+                    (click)="getRandomUser()"
                     type="button"
-                    class="btn btn-outline-success"
+                    class="btn btn-outline-dark"
                   >
                     Refresh
                   </button>
